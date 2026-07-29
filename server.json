@@ -1,7 +1,7 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.getagentictools/catalog",
-  "description": "Search 41,000+ agentic coding tools — agent skills, MCP servers, Claude Code plugins, agentic loops — with real install counts and GitHub stars. Free, no auth, deterministic.",
+  "description": "Search 41,000+ agent skills, MCP servers, plugins & loops — real install counts and stars.",
   "repository": {
     "url": "https://github.com/dmoka/getagentictools-mcp",
     "source": "github"
