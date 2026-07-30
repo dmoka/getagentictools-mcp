@@ -1,5 +1,7 @@
 # getagentictools MCP server
 
+[![smithery badge](https://smithery.ai/badge/mokabme/getagentictools)](https://smithery.ai/servers/mokabme/getagentictools)
+
 Search **41,000+ agent skills, MCP servers, Claude Code plugins, and agentic loops** from inside any MCP-capable agent. This is the remote MCP server for [getagentictools.com](https://getagentictools.com?ref=github-mcp) — real install counts and GitHub stars, refreshed weekly, never faked.
 
 **Endpoint:** `https://getagentictools.com/api/mcp` — Streamable HTTP, free, no auth, no tracking.
