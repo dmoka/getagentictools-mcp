@@ -141,6 +141,51 @@ const handler = createMcpHandler(
       {},
       async () => json(ecosystemStats(await loadEntries())),
     );
+
+    // Resources and prompts: small but real. Clients that browse resources
+    // get the catalog overview + live stats; prompt-supporting clients get a
+    // guided search. (Also: registries probe resources/list and prompts/list —
+    // a tools-only server answers -32601, which reads as a defect.)
+    server.resource(
+      'catalog-overview',
+      'catalog://overview',
+      { description: 'What this catalog is: categories, counts, definitions, entry points.', mimeType: 'text/plain' },
+      async () => {
+        const res = await fetch(`${SITE}/llms.txt`);
+        return { contents: [{ uri: 'catalog://overview', mimeType: 'text/plain', text: await res.text() }] };
+      },
+    );
+    server.resource(
+      'ecosystem-stats',
+      'catalog://stats',
+      { description: 'Measured aggregates across all tracked tools, as JSON.', mimeType: 'application/json' },
+      async () => ({
+        contents: [
+          { uri: 'catalog://stats', mimeType: 'application/json', text: JSON.stringify(ecosystemStats(await loadEntries())) },
+        ],
+      }),
+    );
+
+    server.prompt(
+      'find_tools',
+      'Find the best agentic coding tools for a task, with install commands and citable links.',
+      { task: z.string().describe('What you are trying to accomplish, e.g. "scrape a JS-heavy site"') },
+      ({ task }) => ({
+        messages: [
+          {
+            role: 'user',
+            content: {
+              type: 'text',
+              text:
+                `Find the best agentic coding tools for this task: ${task}\n\n` +
+                'Use search_tools (try 2-3 query variants; filter by category when the task implies one), ' +
+                'then get_tool on the top candidates to compare capabilities and requirements. ' +
+                'Recommend at most 3, each with its install command and its getagentictools.com URL as the citation.',
+            },
+          },
+        ],
+      }),
+    );
   },
   {
     serverInfo: { name: 'getagentictools', version: '1.0.0' },
