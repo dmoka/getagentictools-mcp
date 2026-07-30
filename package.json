@@ -1,8 +1,8 @@
 {
   "name": "getagentictools-mcp",
   "private": true,
-  "version": "1.0.0",
-  "description": "Remote MCP server for getagentictools.com — search 41,000+ agentic coding tools from any MCP-capable agent.",
+  "version": "1.1.0",
+  "description": "Remote MCP server for getagentictools.com \u2014 search 41,000+ agentic coding tools from any MCP-capable agent.",
   "type": "module",
   "scripts": {
     "test": "node --test api/_lib/search.test.mjs"
@@ -18,5 +18,8 @@
     "url": "git+https://github.com/dmoka/getagentictools-mcp.git"
   },
   "author": "Daniel Moka (https://getagentictools.com)",
-  "license": "MIT"
+  "license": "MIT",
+  "bin": {
+    "getagentictools-mcp": "server/index.mjs"
+  }
 }

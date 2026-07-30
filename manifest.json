@@ -1,0 +1,51 @@
+{
+  "manifest_version": "0.3",
+  "name": "getagentictools",
+  "display_name": "getagentictools — 41,000+ agent tools",
+  "version": "1.1.0",
+  "description": "Search 41,000+ agent skills, MCP servers, plugins & loops — real install counts and stars.",
+  "long_description": "Search the full getagentictools.com catalog from Claude: agent skills (SKILL.md), MCP servers, Claude Code plugins, and agentic loops — with **real install counts and GitHub stars**, harvested weekly from GitHub and public registries.\n\nAsk things like *\"find me an MCP server for Postgres\"* or *\"what skills exist for PDF extraction?\"* — every result carries its install command and a link to its catalog page.\n\nNo account, no API key, no telemetry: the extension reads the catalog's public data endpoints and nothing else.",
+  "author": {
+    "name": "Daniel Moka",
+    "email": "mokabme@gmail.com",
+    "url": "https://getagentictools.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmoka/getagentictools-mcp.git"
+  },
+  "homepage": "https://getagentictools.com/mcp-server",
+  "documentation": "https://getagentictools.com/mcp-server",
+  "support": "https://github.com/dmoka/getagentictools-mcp/issues",
+  "icon": "icon.png",
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.mjs",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/index.mjs"]
+    }
+  },
+  "tools": [
+    { "name": "search_tools", "description": "Ranked search across all four categories; install command and page URL on every hit" },
+    { "name": "get_tool", "description": "Full detail for one tool, incl. SKILL.md-extracted capabilities for enriched skills" },
+    { "name": "list_categories", "description": "The four categories with live counts" },
+    { "name": "whats_new", "description": "Recently updated tools, by real upstream push date" },
+    { "name": "ecosystem_stats", "description": "Measured aggregates: maintainers, license coverage, star concentration" }
+  ],
+  "prompts": [
+    {
+      "name": "find_tools",
+      "description": "Find the best agentic coding tools for a task, with install commands and citable links",
+      "arguments": ["task"],
+      "text": "Find the best agentic coding tools for this task: ${arguments.task}. Use search_tools with 2-3 query variants, then get_tool on the top candidates. Recommend at most 3, each with its install command and its getagentictools.com URL."
+    }
+  ],
+  "keywords": ["agentic", "ai-agents", "claude-code", "mcp", "skills", "plugins", "developer-tools", "search"],
+  "license": "MIT",
+  "privacy_policies": ["https://getagentictools.com/privacy"],
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": { "node": ">=20.0.0" }
+  }
+}
