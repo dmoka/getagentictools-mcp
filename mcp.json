@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "getagentictools": {
+      "url": "https://getagentictools.com/api/mcp"
+    }
+  }
+}
